@@ -1,0 +1,207 @@
+<!-- HK-Anon -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="kuvat/TITTLEPICTURES/HK.ico" type="image/x-icon">
+  <link rel="alternate icon" href="kuvat/TITTLEPICTURES/HK.png" type="image/png">
+
+<style>
+
+.penrose {
+  width: 4em;
+  height: 4em;
+  position: absolute;
+  top: 0;
+  color: hsl(0, 100%, 60%);
+  animation: fallAndRotate linear infinite;
+  transform-origin: 66% 66%;
+  opacity: 0;
+}
+.penrose div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  clip-path: polygon(63% 0, 75% 0, 26% 85%, 89.5% 85%, 98.4% 100%, 0 100%);
+  transform: rotate(calc((var(--n) - 1) * 120deg));
+  filter: brightness(calc(1 - (var(--n) - 1) * 0.33));
+}
+.penrose div:nth-child(1){--n:1;}
+.penrose div:nth-child(2){--n:2;top:18.3%;left:43.3%;}
+.penrose div:nth-child(3){--n:3;top:46.5%;left:5.9%;}
+
+@keyframes fallAndRotate {
+  0% { transform: translateY(-120px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.highlight-gradient {
+  font-weight: bold;
+  background: linear-gradient(90deg, #481fa8, #1187ac, #811678, #ffffff, #ffffff, #474242);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientMove 3s linear infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.green-fade {
+  display: inline-block;
+  animation: greenFade 6s infinite ease-in-out;
+}
+@keyframes greenFade {
+  0% { color: #244421; }
+  25% { color: #7bd389; }
+  50% { color: #1c491d; }
+  75% { color: #81c784; }
+  100% { color: #21471d; }
+}
+
+#apila-template {
+  display: none;
+  position: absolute;
+  width: 2em;
+  height: 2em;
+}
+#apila-template > div {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background-color: var(--green);
+}
+#apila-template #main-square {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+#apila-template .stem {
+  position: absolute;
+  width: 0.3em;
+  height: 1.2em;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) rotate(15deg);
+  background: linear-gradient(to bottom, var(--green) 70%, transparent 100%);
+  border-radius: 0 0 50% 50%;
+  opacity: 0.7;
+}
+#apila-template .leaf1-left { left: -25%; }
+#apila-template .leaf1-right { top: -25%; }
+#apila-template .leaf2-left { right: 0; top: -25%; }
+#apila-template .leaf2-right { right: -25%; }
+#apila-template .leaf3-left { right: -25%; bottom: 0; }
+#apila-template .leaf3-right { right: 0; bottom: -25%; }
+#apila-template .leaf4-left { bottom: -25%; }
+#apila-template .leaf4-right { bottom: 0; left: -25%; }
+
+.apila {
+  position: fixed;
+  width: 2em;
+  height: 2em;
+  pointer-events: none;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes apilaFloat {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+.penrose-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -60%) scale(0.95); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+  <title>ⲫⲛⲟⲩϯ</title>
+</head>
+
+<body>
+  <div class="penrose-background"></div>
+  <div id="apila-template">
+    <div id="main-square"></div>
+    <div class="leaf1-left"></div>
+    <div class="leaf1-right"></div>
+    <div class="leaf2-left"></div>
+    <div class="leaf2-right"></div>
+    <div class="leaf3-left"></div>
+    <div class="leaf3-right"></div>
+    <div class="leaf4-left"></div>
+    <div class="leaf4-right"></div>
+    <div class="stem"></div>
+  </div>
+
+  <script>
+
+const numberOfShapes = 90;
+for (let i = 0; i < numberOfShapes; i++) {
+  const penrose = document.createElement('div');
+  penrose.classList.add('penrose');
+  penrose.style.left = Math.random() * 100 + 'vw';
+  penrose.style.animationDuration = 10 + Math.random() * 10 + 's';
+  penrose.style.animationDelay = Math.random() * 10 + 's';
+  penrose.style.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+  for (let j = 0; j < 3; j++) {
+    const segment = document.createElement('div');
+    penrose.appendChild(segment);
+  }
+
+  document.body.appendChild(penrose);
+}
+
+window.onload = () => {
+  const numberOfApilas = 90;
+  const container = document.querySelector('.penrose-background');
+  const template = document.getElementById('apila-template');
+
+  for (let i = 0; i < numberOfApilas; i++) {
+    const apila = template.cloneNode(true);
+    apila.style.display = 'block';
+    apila.classList.add('apila');
+    apila.style.left = Math.random() * 100 + 'vw';
+    apila.style.top = (-5 - Math.random() * 10) + 'vh';
+
+    const lightness = 40 + Math.random() * 30;
+    apila.style.setProperty('--green', `hsl(130, 70%, ${lightness}%)`);
+
+    const duration = 10 + Math.random() * 15;
+    apila.style.animation = `fallAndRotate ${duration}s linear infinite`;
+    apila.style.animationDelay = (Math.random() * duration) + 's';
+
+    container.appendChild(apila);
+  }
+
+  template.removeAttribute('id');
+};
+  </script>
+</body>
+</html>
+
+<!-- HK-Anon -->
