@@ -4,9 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.5" />
-  <link rel="icon" href="kuvat/TITTLEPICTURES/HK.ico" type="image/x-icon">
-  <link rel="alternate icon" href="kuvat/TITTLEPICTURES/HK.png" type="image/png">
+  <meta name="viewport" content="width=device-width">
 
   <style>
     .penrose {
@@ -19,6 +17,7 @@
     transform-origin: 66% 66%;
     opacity: 0;
     }
+    
     .penrose div {
     position: absolute;
     width: 100%;
@@ -52,6 +51,7 @@
     color: transparent;
     animation: gradientMove 3s linear infinite;
     }
+
     @keyframes gradientMove {
     0% { background-position: 0% 0; }
     100% { background-position: 200% 0; }
@@ -69,14 +69,15 @@
     }
   </style>
 
-  <title>ⲫⲛⲟⲩϯ</title>
 </head>
 <body>
-<div class="penrose-background"></div>
+
+  <div class="penrose-background"></div>
 
   <script>
-    const numberOfShapes = 90;
-for (let i = 0; i < numberOfShapes; i++) {
+
+  const numberOfShapes = 90;
+    for (let i = 0; i < numberOfShapes; i++) {
   const penrose = document.createElement('div');
   penrose.classList.add('penrose');
   penrose.style.left = Math.random() * 100 + 'vw';
@@ -90,17 +91,8 @@ for (let i = 0; i < numberOfShapes; i++) {
   }
 
   document.body.appendChild(penrose);
-}
-
-window.onload = () => {
-  const numberOfApilas = 90;
-  const container = document.querySelector('.penrose-background');
-  template.removeAttribute('id');
-};
+  }
 
   </script>
-
 </body>
 </html>
-
-<!-- HK-Anon -->
