@@ -8,6 +8,8 @@
 
   <style>
 
+    body {background-color: Black;}
+
     @keyframes fallAndRotate {
     0% { transform: translateY(-120px) rotate(0deg); opacity: 0; }
     10% { opacity: 1; }
@@ -79,7 +81,7 @@
     100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
-    .ApilaPenrose-background {
+    .background {
     position: fixed;
     top: 0;
     left: 0;
@@ -104,7 +106,7 @@
 
 <body>
   
-  <div class="ApilaPenrose-background"></div>
+  <div class="background"></div>
   <div id="apila-template">
     <div id="main-square"></div>
     <div class="leaf1-left"></div>
@@ -122,7 +124,7 @@
 
 window.onload = () => {
   const numberOfApilas = 90;
-  const container = document.querySelector('.ApilaPenrose-background');
+  const container = document.querySelector('.background');
   const template = document.getElementById('apila-template');
 
   for (let i = 0; i < numberOfApilas; i++) {
