@@ -20,6 +20,7 @@
     display: inline-block;
     animation: greenFade 6s infinite ease-in-out;
     }
+
     @keyframes greenFade {
     0% { color: #244421; }
     25% { color: #7bd389; }
@@ -34,6 +35,7 @@
     width: 2em;
     height: 2em;
     }
+
     #apila-template > div {
     position: absolute;
     width: 50%;
@@ -41,11 +43,13 @@
     border-radius: 50%;
     background-color: var(--green);
     }
+
     #apila-template #main-square {
     width: 100%;
     height: 100%;
     border-radius: 0;
     }
+
     #apila-template .stem {
     position: absolute;
     width: 0.3em;
@@ -96,6 +100,7 @@
     from { opacity: 0; transform: translate(-50%, -60%) scale(0.95); }
     to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     }
+
     @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -107,6 +112,7 @@
 <body>
   
   <div class="background"></div>
+
   <div id="apila-template">
     <div id="main-square"></div>
     <div class="leaf1-left"></div>
@@ -122,30 +128,30 @@
 
   <script>
 
-window.onload = () => {
-  const numberOfApilas = 90;
-  const container = document.querySelector('.background');
-  const template = document.getElementById('apila-template');
+  window.onload = () => {
+    const numberOfApilas = 90;
+    const container = document.querySelector('.background');
+    const template = document.getElementById('apila-template');
 
-  for (let i = 0; i < numberOfApilas; i++) {
-    const apila = template.cloneNode(true);
-    apila.style.display = 'block';
-    apila.classList.add('apila');
-    apila.style.left = Math.random() * 100 + 'vw';
-    apila.style.top = (-5 - Math.random() * 10) + 'vh';
+    for (let i = 0; i < numberOfApilas; i++) {
+      const apila = template.cloneNode(true);
+      apila.style.display = 'block';
+      apila.classList.add('apila');
+      apila.style.left = Math.random() * 100 + 'vw';
+      apila.style.top = (-5 - Math.random() * 10) + 'vh';
 
-    const lightness = 40 + Math.random() * 30;
-    apila.style.setProperty('--green', `hsl(130, 70%, ${lightness}%)`);
+      const lightness = 40 + Math.random() * 30;
+      apila.style.setProperty('--green', `hsl(130, 70%, ${lightness}%)`);
 
-    const duration = 10 + Math.random() * 15;
-    apila.style.animation = `fallAndRotate ${duration}s linear infinite`;
-    apila.style.animationDelay = (Math.random() * duration) + 's';
+      const duration = 10 + Math.random() * 15;
+      apila.style.animation = `fallAndRotate ${duration}s linear infinite`;
+      apila.style.animationDelay = (Math.random() * duration) + 's';
 
-    container.appendChild(apila);
-  }
+      container.appendChild(apila);
+    }
 
-  template.removeAttribute('id');
-};
+    template.removeAttribute('id');
+  };
   </script>
 
 </body>
