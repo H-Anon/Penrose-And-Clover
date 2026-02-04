@@ -1,30 +1,34 @@
-<!-- HK-Anon -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width">
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width">
+
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet"/>
+
+<title>ⲫⲛⲟⲩϯ</title>
 
 <style>
-
-/*other Css*/
-body {background-color: Black;}
+/* =====================
+   Base / Background
+===================== */
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
 
 .background {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   pointer-events: none;
   overflow: hidden;
   z-index: 0;
 }
-/*other Css*/
 
-/*Penrose Css*/
+/* =====================
+   Penrose CSS
+===================== */
 .penrose {
   width: 4em;
   height: 4em;
@@ -34,6 +38,15 @@ body {background-color: Black;}
   animation: fallAndRotate linear infinite;
   transform-origin: 66% 66%;
   opacity: 0;
+
+  /* mouse layer */
+  --mx: 0px;
+  --my: 0px;
+  --r: 0deg;
+  transform:
+    translate(var(--mx), var(--my))
+    rotate(var(--r));
+  will-change: transform;
 }
 
 .penrose div {
@@ -45,45 +58,20 @@ body {background-color: Black;}
   transform: rotate(calc((var(--n) - 1) * 120deg));
   filter: brightness(calc(1 - (var(--n) - 1) * 0.33));
 }
+
 .penrose div:nth-child(1){--n:1;}
 .penrose div:nth-child(2){--n:2;top:18.3%;left:43.3%;}
 .penrose div:nth-child(3){--n:3;top:46.5%;left:5.9%;}
 
 @keyframes fallAndRotate {
-  0% { transform: translateY(-120px) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
+  0%   { transform: translateY(-120px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
   100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-.highlight-gradient {
-  font-weight: bold;
-  background: linear-gradient(90deg, #481fa8, #1187ac, #811678, #ffffff, #ffffff, #474242);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradientMove 3s linear infinite;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.green-fade {
-  display: inline-block;
-  animation: greenFade 6s infinite ease-in-out;
-}
-/*Penrose Css*/
-
-/*Clover Css*/
-@keyframes greenFade {
-  0% { color: #244421; }
-  25% { color: #7bd389; }
-  50% { color: #1c491d; }
-  75% { color: #81c784; }
-  100% { color: #21471d; }
-}
-
+/* =====================
+   Clover CSS
+===================== */
 #apila-template {
   display: none;
   position: absolute;
@@ -113,9 +101,9 @@ body {background-color: Black;}
   left: 50%;
   transform: translateX(-50%) rotate(15deg);
   background: linear-gradient(to bottom, var(--green) 70%, transparent 100%);
-  border-radius: 0 0 50% 50%;
   opacity: 0.7;
 }
+
 #apila-template .leaf1-left { left: -25%; }
 #apila-template .leaf1-right { top: -25%; }
 #apila-template .leaf2-left { right: 0; top: -25%; }
@@ -131,103 +119,149 @@ body {background-color: Black;}
   height: 2em;
   pointer-events: none;
   opacity: 0;
-  animation-fill-mode: forwards;
+  animation: fallAndRotate linear infinite;
+
+  /* mouse layer */
+  --mx: 0px;
+  --my: 0px;
+  --r: 0deg;
+  transform:
+    translate(var(--mx), var(--my))
+    rotate(var(--r));
+  will-change: transform;
 }
 
+/* =====================
+   Animations
+===================== */
 @keyframes apilaFloat {
-  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
+  0%   { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
   100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, -60%) scale(0.95); }
-  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/*Clover Css*/
 </style>
-
-  <title>ⲫⲛⲟⲩϯ</title>
 </head>
 
 <body>
 
-  <!-- background Html for both Penrose And Clover -->
-  <div class="background"></div>
+<div class="background"></div>
 
-  <!-- 
-  Note: This could be done in a better way, 
-  Penrose is pretty much completly done in css and js 
-  i will fix The clover, so the html is minimal and looks better. later
+<!-- Clover Template -->
+<div id="apila-template">
+  <div id="main-square"></div>
+  <div class="leaf1-left"></div>
+  <div class="leaf1-right"></div>
+  <div class="leaf2-left"></div>
+  <div class="leaf2-right"></div>
+  <div class="leaf3-left"></div>
+  <div class="leaf3-right"></div>
+  <div class="leaf4-left"></div>
+  <div class="leaf4-right"></div>
+  <div class="stem"></div>
+</div>
 
-  tldr, html under this is pretty much not needed
-  -->
-  <!-- Clover Shape Html -->
-  <div id="apila-template">
-    <div id="main-square"></div>
-    <div class="leaf1-left"></div>
-    <div class="leaf1-right"></div>
-    <div class="leaf2-left"></div>
-    <div class="leaf2-right"></div>
-    <div class="leaf3-left"></div>
-    <div class="leaf3-right"></div>
-    <div class="leaf4-left"></div>
-    <div class="leaf4-right"></div>
-    <div class="stem"></div>
-  </div>
+<script>
+/* =====================
+   Penrose Creation
+===================== */
+const numberOfShapes = 90;
 
-  <script>
-  // Penrose Js
-  const numberOfShapes = 90;
-    for (let i = 0; i < numberOfShapes; i++) {
-    const penrose = document.createElement('div');
-    penrose.classList.add('penrose');
-    penrose.style.left = Math.random() * 100 + 'vw';
-    penrose.style.animationDuration = 10 + Math.random() * 10 + 's';
-    penrose.style.animationDelay = Math.random() * 10 + 's';
-    penrose.style.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+for (let i = 0; i < numberOfShapes; i++) {
+  const penrose = document.createElement('div');
+  penrose.classList.add('penrose');
+  penrose.style.left = Math.random() * 100 + 'vw';
+  penrose.style.animationDuration = 10 + Math.random() * 10 + 's';
+  penrose.style.animationDelay = Math.random() * 10 + 's';
+  penrose.style.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
 
-    for (let j = 0; j < 3; j++) {
-      const segment = document.createElement('div');
-      penrose.appendChild(segment);
-    }
-
-    document.body.appendChild(penrose);
+  for (let j = 0; j < 3; j++) {
+    penrose.appendChild(document.createElement('div'));
   }
-  //
 
-  // Clover Js
-  window.onload = () => {
-    const numberOfApilas = 90;
-    const container = document.querySelector('.background');
-    const template = document.getElementById('apila-template');
+  document.body.appendChild(penrose);
+}
 
-    for (let i = 0; i < numberOfApilas; i++) {
-      const apila = template.cloneNode(true);
-      apila.style.display = 'block';
-      apila.classList.add('apila');
-      apila.style.left = Math.random() * 100 + 'vw';
-      apila.style.top = (-5 - Math.random() * 10) + 'vh';
+/* =====================
+   Clover Creation
+===================== */
+window.onload = () => {
+  const container = document.querySelector('.background');
+  const template = document.getElementById('apila-template');
 
-      const lightness = 40 + Math.random() * 30;
-      apila.style.setProperty('--green', `hsl(130, 70%, ${lightness}%)`);
+  for (let i = 0; i < 90; i++) {
+    const apila = template.cloneNode(true);
+    apila.style.display = 'block';
+    apila.classList.add('apila');
+    apila.style.left = Math.random() * 100 + 'vw';
+    apila.style.top = (-10 - Math.random() * 10) + 'vh';
 
-      const duration = 10 + Math.random() * 15;
-      apila.style.animation = `fallAndRotate ${duration}s linear infinite`;
-      apila.style.animationDelay = (Math.random() * duration) + 's';
+    const lightness = 40 + Math.random() * 30;
+    apila.style.setProperty('--green', `hsl(130, 70%, ${lightness}%)`);
 
-      container.appendChild(apila);
-    }
+    const duration = 10 + Math.random() * 15;
+    apila.style.animationDuration = duration + 's';
+    apila.style.animationDelay = Math.random() * duration + 's';
 
-    template.removeAttribute('id');
-  };
-  //
-  </script>
+    container.appendChild(apila);
+  }
+};
+
+let mouseX = innerWidth / 2;
+let mouseY = innerHeight / 2;
+let smoothX = mouseX;
+let smoothY = mouseY;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+const reactives = [];
+
+function registerReactives() {
+  document.querySelectorAll('.penrose, .apila').forEach(el => {
+    reactives.push({
+      el,
+      strength: 35 + Math.random() * 45, // MUCH stronger
+      rot: (Math.random() - 0.5) * 40
+    });
+  });
+}
+
+function animate() {
+  /* cursor inertia */
+  smoothX += (mouseX - smoothX) * 0.15;
+  smoothY += (mouseY - smoothY) * 0.15;
+
+  reactives.forEach(o => {
+    const r = o.el.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+
+    const dx = smoothX - cx;
+    const dy = smoothY - cy;
+    const dist = Math.hypot(dx, dy) + 0.001;
+
+    /* magnetic force curve */
+    const force =
+      Math.pow(Math.min(600 / dist, 2.5), 2);
+
+    const x = (dx / dist) * force * o.strength;
+    const y = (dy / dist) * force * o.strength;
+
+    o.el.style.setProperty('--mx', `${x}px`);
+    o.el.style.setProperty('--my', `${y}px`);
+    o.el.style.setProperty('--r', `${o.rot * force}deg`);
+  });
+
+  requestAnimationFrame(animate);
+}
+
+setTimeout(() => {
+  registerReactives();
+  animate();
+}, 100);
+</script>
+
 </body>
 </html>
-
-<!-- HK-Anon -->
